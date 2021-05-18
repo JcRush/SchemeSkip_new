@@ -32,6 +32,7 @@ class SchemeAdpter(private val context : Context, private var dataSet:ArrayList<
         for(parameter in parameterList){
             val tvParameter = TextView(context)
             tvParameter.text = parameter.key + "    " + parameter.value
+            tvParameter.textSize = 20F
             viewHolder.llayout.addView(tvParameter)
         }
 
