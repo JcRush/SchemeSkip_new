@@ -4,15 +4,14 @@
     android:orientation="horizontal"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:gravity="center">
+    android:layout_gravity="center_horizontal">
 
     <TextView
         android:id="@+id/tv_param_name"
         android:layout_height="30dp"
         android:layout_width="wrap_content"
         android:textSize="20sp"
-        android:text="@string/tv_text_placeholder"
-        android:gravity="center|right"/>
+        android:text="@string/tv_text_placeholder" />
 
     <TextView
         android:id="@+id/tv_param_value"
@@ -20,7 +19,6 @@
         android:layout_height="30dp"
         android:textSize="20sp"
         android:layout_marginLeft="20dp"
-        android:text="@string/tv_text_placeholder"
-        android:gravity="center|left"/>
+        android:text="@string/tv_text_placeholder" />
 
 </LinearLayout>

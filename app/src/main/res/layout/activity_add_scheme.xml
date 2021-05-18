@@ -19,13 +19,12 @@
 
     <ListView
         android:id="@+id/lv_parameters"
-        android:layout_width="wrap_content"
+    android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf= "@+id/cl_add_parameter"/>
-
+        app:layout_constraintBottom_toTopOf= "@+id/cl_add_parameter" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_add_parameter"

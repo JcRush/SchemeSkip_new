@@ -36,6 +36,7 @@ class ParametersAdapter(val context: Context, var parameterList: ArrayList<Param
         return itemView
     }
 
+    //动态添加item
     fun addItem(parameter : Parameter){
         if(parameterList == null) {
             parameterList = ArrayList<Parameter>()
