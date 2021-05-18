@@ -15,17 +15,17 @@ class SchemeAdpter(private val dataSet:List<Parameter>) :
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val paramName : TextView
-        val paramValue : EditText
+        val paramValue : TextView
 
         init {
             paramName = view.findViewById(R.id.tv_param_name)
-            paramValue = view.findViewById(R.id.et_param_value)
+            paramValue = view.findViewById(R.id.tv_param_value)
         }
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.item_scheme, viewGroup, false)
+            .inflate(R.layout.item_parameter, viewGroup, false)
 
         return ViewHolder(view)
     }

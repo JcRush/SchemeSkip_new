@@ -1,3 +1,5 @@
 package com.example.jumptestdemo.bean
 
-data class Parameter(val key:String, val value:String)
+import android.text.Editable
+
+data class Parameter(val key: String, val value: String)
