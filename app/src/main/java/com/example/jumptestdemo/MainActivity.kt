@@ -1,15 +1,27 @@
 package com.example.jumptestdemo
 
+import android.Manifest
+import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.os.Environment
+import android.util.Log
 import android.view.View
+import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.jumptestdemo.adpter.SchemeAdpter
 import com.example.jumptestdemo.bean.Parameter
 import com.example.jumptestdemo.bean.Scheme
+import com.example.jumptestdemo.file.ReadXmlFile
+import com.example.jumptestdemo.file.WriteXmlFile
+import java.io.File
+import java.lang.Exception
 
 
 class MainActivity : AppCompatActivity() {
@@ -62,7 +74,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initDefaultValue() : ArrayList<Scheme> {
-        return ArrayList<Scheme>()
+        val arrList = testXml()
+        return arrList
+        //return ArrayList<Scheme>()
     }
 
     //字符串转换成Scheme
@@ -80,6 +94,46 @@ class MainActivity : AppCompatActivity() {
         }
         return Scheme(parms)
     }
+
+    //测试读写XML文件
+    fun testXml() : ArrayList<Scheme>{
+        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE), 222);
+
+
+        //val directory = File(Environment.getStorageDirectory().path  +  File.separator.toString() + "scheme")
+        ///val directoryPath = "/sdcard/Scheme/"
+        var arrayScheme : ArrayList<Scheme> = ArrayList()
+        val fileName = "scheme.xml"
+        try {
+
+            //val fileDir =  File(directoryPath);
+            //if (!fileDir.exists()) {
+            //    fileDir.mkdir();
+            //}
+            //if(fileDir.exists()){
+            //    Log.i("Directory" , "Exists")
+            //}
+
+            val xmlWrite = WriteXmlFile()
+            val writePath = xmlWrite.Write(this, fileName)
+            val xmlRead = ReadXmlFile()
+            arrayScheme = xmlRead.getXml(fileName)
+        } catch (e : Exception) {
+            Log.e("Error", e.message!!)
+        }
+
+        return  arrayScheme
+    }
+
+    @Override
+    fun onRequestPermissionsResult(requestCode : Int, permissions : Array<String>, grantResults : Array<Int>) {
+        when (requestCode) {
+            222 ->
+            Toast.makeText(getApplicationContext(), "已申请权限", Toast.LENGTH_SHORT).show();
+
+        }
+    }
+
 
 
 }

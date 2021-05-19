@@ -1,6 +1,7 @@
 package com.example.jumptestdemo.file
 
 import android.content.Context
+import android.util.Log
 import android.util.Xml
 import org.xmlpull.v1.XmlSerializer
 import java.io.OutputStream
@@ -41,8 +42,7 @@ class WriteXmlFile {
             serializer.endDocument();
 
         }catch (e : Exception){
-
+            Log.e("Error", e.message!!)
         }
-
     }
 }
