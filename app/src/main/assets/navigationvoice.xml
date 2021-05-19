@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+    <scheme>
+        <parameter name = "page_item">1</parameter>
+        <parameter name = "keepui">1</parameter>
+    </scheme>
+</data>

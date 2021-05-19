@@ -18,7 +18,7 @@ class ReadXmlFile {
             val pullParser : XmlPullParser = Xml.newPullParser()
             pullParser.setInput(inStream, "UTF-8")
             var event = pullParser.eventType
-            val parameterList = ArrayList<Parameter>()
+            var parameterList = ArrayList<Parameter>()
             while (event != XmlPullParser.END_DOCUMENT) {
                 when (event) {
                     XmlPullParser.START_TAG -> {
@@ -26,7 +26,7 @@ class ReadXmlFile {
                             if (parameterList.size != 0) {
                                 arrList.add(Scheme(parameterList))
                             }
-                            parameterList.clear()
+                            parameterList = ArrayList()
                         }
                         if (pullParser.name == "parameter") {
                             parameterList.add(Parameter(pullParser.getAttributeValue(null, "name"), pullParser.nextText()))

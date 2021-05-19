@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+    <scheme>
+        <parameter name = "type">drive</parameter>
+    </scheme>
+    <scheme>
+        <parameter name = "type">bus</parameter>
+        <parameter name = "keepui">1</parameter>
+    </scheme>
+    <scheme>
+        <parameter name = "type">walk</parameter>
+        <parameter name = "keepui">1</parameter>
+    </scheme>
+    <scheme>
+        <parameter name = "type">cycle</parameter>
+        <parameter name = "keepui">1</parameter>
+    </scheme>
+</data>

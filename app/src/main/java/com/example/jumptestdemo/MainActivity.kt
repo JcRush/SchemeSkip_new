@@ -1,16 +1,14 @@
 package com.example.jumptestdemo
 
 import android.Manifest
-import android.content.Context
 import android.content.Intent
-import android.content.res.Resources
-import android.os.Build
 import android.os.Bundle
-import android.os.Environment
 import android.util.Log
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -21,18 +19,20 @@ import com.example.jumptestdemo.bean.Parameter
 import com.example.jumptestdemo.bean.Scheme
 import com.example.jumptestdemo.file.ReadXmlFile
 import com.example.jumptestdemo.file.WriteXmlFile
-import java.io.File
 import java.lang.Exception
 
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var schemeAdapter : SchemeAdpter;
+    private lateinit var schemeAdapter : SchemeAdpter
+    private lateinit var schemeList : Array<String>
+    private lateinit var scheme : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
+        initData()
         initView()
     }
 
@@ -45,6 +45,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initView() {
+        val spinner : Spinner = findViewById(R.id.spinner)
+        spinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long
+            ) {
+                scheme = schemeList[position]
+                val temp = initDefaultValue()
+                schemeAdapter.change(temp)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+        }
+
         val schemeList = initDefaultValue()
 
         schemeAdapter = SchemeAdpter(this, schemeList)
@@ -63,15 +76,20 @@ class MainActivity : AppCompatActivity() {
         //为item添加点击事件
         schemeAdapter!!.setOnKotlinItemClickListener(object : SchemeAdpter.IKotlinItemClickListener {
             override fun onItemClickListener(position: Int) {
-                val scheme = schemeAdapter.getScheme(position)
-                val stringBuffer = StringBuffer("qqmap://map/routeplan?")
-                for(parameter in scheme.parameters) {
+                val schemeNew = schemeAdapter.getScheme(position)
+                val stringBuffer = StringBuffer("qqmap://map/$scheme?")
+                for(parameter in schemeNew.parameters) {
                     stringBuffer.append("&" + parameter.key + "=" + parameter.value)
                 }
                 val intent = Intent("android.intent.action.VIEW", android.net.Uri.parse(stringBuffer.toString()));
                 startActivity(intent)
             }
         })
+    }
+
+    private fun initData() {
+        schemeList = this.resources.getStringArray(R.array.Scheme)
+        scheme = schemeList[0]
     }
 
     private fun initDefaultValue() : ArrayList<Scheme> {
@@ -97,30 +115,22 @@ class MainActivity : AppCompatActivity() {
 
     //读取指定的xml文件
     fun readXMlFileFromRes() : ArrayList<Scheme> {
-        val fileName = "assets/scheme.xml"
+        val fileName = "assets/$scheme.xml"
         val xmlRead = ReadXmlFile()
         return xmlRead.getXml(fileName)
     }
 
     //测试读写XML文件
     fun testXml() : ArrayList<Scheme>{
-        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE), 222);
-
+        //申请权限
+        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE), 222)
 
         //val directory = File(Environment.getStorageDirectory().path  +  File.separator.toString() + "scheme")
         ///val directoryPath = "/sdcard/Scheme/"
+
         var arrayScheme : ArrayList<Scheme> = ArrayList()
-        val fileName = "scheme.xml"
+        val fileName = "routeplan.xml"
         try {
-
-            //val fileDir =  File(directoryPath);
-            //if (!fileDir.exists()) {
-            //    fileDir.mkdir();
-            //}
-            //if(fileDir.exists()){
-            //    Log.i("Directory" , "Exists")
-            //}
-
             val xmlWrite = WriteXmlFile()
             val writePath = xmlWrite.Write(this, fileName)
             val xmlRead = ReadXmlFile()

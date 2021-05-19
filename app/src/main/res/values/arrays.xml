@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="Scheme">
+        <item>activityarea</item>
+        <item>carinfo</item>
+        <item>edog</item>
+        <item>fav</item>
+        <item>feedback</item>
+        <item>gotosubway</item>
+        <item>h5detail</item>
+        <item>homepage</item>
+        <item>mippy</item>
+        <item>navigationvoice</item>
+        <item>nearby</item>
+        <item>offlinemap</item>
+        <item>peccancy</item>
+        <item>report</item>
+        <item>routeplan</item>
+        <item>routeplan_without_endpoint</item>
+        <item>setting</item>
+        <item>streetMap</item>
+        <item>themeCenter</item>
+        <item>track</item>
+    </string-array>
+</resources>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+    <scheme>
+        <parameter name = "type">car</parameter>
+        <parameter name = "from">startName</parameter>
+        <parameter name = "fromcoord">39.656928536764674,116.71023835156248</parameter>
+        <parameter name = "to">endName</parameter>
+        <parameter name = "tocoord">39.34751710804772,115.93570221874998</parameter>
+        <!--0：较快捷1：无高速 2：距离-->
+        <parameter name = "policy">2</parameter>
+        <parameter name = "referer">trydriver</parameter>
+    </scheme>
+</data>

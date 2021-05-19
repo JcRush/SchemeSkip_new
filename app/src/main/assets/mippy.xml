@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+    <scheme>
+        <parameter name = "moduleName">taxi</parameter>
+        <parameter name = "appName">OrderIndex</parameter>
+        <parameter name = "keepui">1</parameter>
+    </scheme>
+    <scheme>
+        <parameter name = "moduleName">realtimebus</parameter>
+        <parameter name = "appName">HomePage</parameter>
+        <parameter name = "statusBar">dark</parameter>
+        <parameter name = "animationType">right</parameter>
+        <parameter name = "keepui">1</parameter>
+    </scheme>
+    <scheme>
+        <parameter name = "moduleName">order</parameter>
+        <parameter name = "appName">OrderList</parameter>
+        <parameter name = "keepui">1</parameter>
+    </scheme>
+    <scheme>
+        <parameter name = "moduleName">myWallet</parameter>
+        <parameter name = "appName">WalletIndex</parameter>
+        <parameter name = "keepui">1</parameter>
+    </scheme>
+</data>

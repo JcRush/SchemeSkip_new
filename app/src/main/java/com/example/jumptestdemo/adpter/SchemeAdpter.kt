@@ -53,6 +53,14 @@ class SchemeAdpter(private val context : Context, private var dataSet:ArrayList<
         notifyItemInserted(dataSet.size)
     }
 
+    //动态更改
+    fun change(list : ArrayList<Scheme>) {
+        dataSet.clear()
+        notifyItemRangeRemoved(0, dataSet.size)
+        dataSet.addAll(list)
+        notifyItemRangeInserted(0, list.size )
+    }
+
     //返回指定position的Scheme
     fun getScheme(position : Int) : Scheme {
         return dataSet[position]
