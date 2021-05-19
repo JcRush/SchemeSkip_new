@@ -3,6 +3,7 @@ package com.example.jumptestdemo
 import android.Manifest
 import android.content.Context
 import android.content.Intent
+import android.content.res.Resources
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
@@ -74,8 +75,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initDefaultValue() : ArrayList<Scheme> {
-        val arrList = testXml()
-        return arrList
+        return readXMlFileFromRes()
         //return ArrayList<Scheme>()
     }
 
@@ -93,6 +93,13 @@ class MainActivity : AppCompatActivity() {
             }
         }
         return Scheme(parms)
+    }
+
+    //读取指定的xml文件
+    fun readXMlFileFromRes() : ArrayList<Scheme> {
+        val fileName = "assets/scheme.xml"
+        val xmlRead = ReadXmlFile()
+        return xmlRead.getXml(fileName)
     }
 
     //测试读写XML文件

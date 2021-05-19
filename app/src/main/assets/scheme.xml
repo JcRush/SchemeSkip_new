@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+    <scheme>
+        <parameter name = "type">car</parameter>
+        <parameter name = "from">北京</parameter>
+        <parameter name = "to">上海</parameter>
+    </scheme>
+    <scheme>
+        <parameter name = "type">car</parameter>
+        <parameter name = "from">北京</parameter>
+        <parameter name = "to">广州</parameter>
+    </scheme>
+    <scheme>
+        <parameter name = "type">car</parameter>
+        <parameter name = "from">北京</parameter>
+        <parameter name = "to">深圳</parameter>
+    </scheme>
+</data>
