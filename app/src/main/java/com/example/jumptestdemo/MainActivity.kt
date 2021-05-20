@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -54,13 +53,31 @@ class MainActivity : AppCompatActivity() {
         rvScheme.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
         rvScheme.adapter = schemeAdapter
 
-        val btnAddCheme : View = findViewById(R.id.btn_add_scheme)
-        btnAddCheme.setOnClickListener{
+        val btnAddScheme : View = findViewById(R.id.btn_add_scheme)
+        btnAddScheme.setOnClickListener{
             val intent : Intent = Intent()
             intent.setClass(this, AddSchemeActivity::class.java)
             startActivity(intent)
         }
 
+        val spinner : Spinner = findViewById(R.id.spinner)
+        spinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long
+            ) {
+                scheme = schemeList[position]
+                val temp = initDefaultValue()
+                updateAdapter(temp)
+                rvScheme.adapter = schemeAdapter
+                //schemeAdapter.notifyDataSetChanged()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+        }
+    }
+
+    private fun updateAdapter(data : ArrayList<Scheme>) {
+        schemeAdapter = SchemeAdpter(this, data)
         //为item添加点击事件
         schemeAdapter!!.setOnKotlinItemClickListener(object : SchemeAdpter.IKotlinItemClickListener {
             override fun onItemClickListener(position: Int) {
@@ -73,19 +90,6 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         })
-
-        val spinner : Spinner = findViewById(R.id.spinner)
-        spinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long
-            ) {
-                scheme = schemeList[position]
-                val temp = initDefaultValue()
-                schemeAdapter.change(temp)
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-            }
-        }
     }
 
     private fun initData() {
@@ -151,7 +155,4 @@ class MainActivity : AppCompatActivity() {
 
         }
     }
-
-
-
 }

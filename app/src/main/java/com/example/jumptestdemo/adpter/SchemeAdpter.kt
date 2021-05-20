@@ -11,7 +11,7 @@ import com.example.jumptestdemo.R
 import com.example.jumptestdemo.bean.Parameter
 import com.example.jumptestdemo.bean.Scheme
 
-class SchemeAdpter(private val context : Context, private var dataSet:ArrayList<Scheme>) :
+class SchemeAdpter(private val context : Context, private var dataSet : ArrayList<Scheme>) :
     RecyclerView.Adapter<SchemeAdpter.ViewHolder>() {
 
     private var itemClickListener: IKotlinItemClickListener? = null
@@ -56,11 +56,12 @@ class SchemeAdpter(private val context : Context, private var dataSet:ArrayList<
     //动态更改
     fun change(list : ArrayList<Scheme>) {
         dataSet.clear()
-        notifyItemRangeRemoved(0, dataSet.size)
         dataSet.addAll(list)
-        //notifyItemRangeInserted(0, list.size )
-        notifyItemRangeInserted(0, list.size-1)
+    }
 
+    //更新dataSet
+    fun setDataset(list : ArrayList<Scheme>){
+        dataSet = list
     }
 
     //返回指定position的Scheme
