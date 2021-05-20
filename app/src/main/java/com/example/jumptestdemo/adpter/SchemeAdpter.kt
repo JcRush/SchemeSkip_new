@@ -58,7 +58,9 @@ class SchemeAdpter(private val context : Context, private var dataSet:ArrayList<
         dataSet.clear()
         notifyItemRangeRemoved(0, dataSet.size)
         dataSet.addAll(list)
-        notifyItemRangeInserted(0, list.size )
+        //notifyItemRangeInserted(0, list.size )
+        notifyItemRangeInserted(0, list.size-1)
+
     }
 
     //返回指定position的Scheme

@@ -45,23 +45,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initView() {
-        val spinner : Spinner = findViewById(R.id.spinner)
-        spinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long
-            ) {
-                scheme = schemeList[position]
-                val temp = initDefaultValue()
-                schemeAdapter.change(temp)
-            }
 
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-            }
-        }
+        val schemeListTemp = initDefaultValue()
 
-        val schemeList = initDefaultValue()
-
-        schemeAdapter = SchemeAdpter(this, schemeList)
-        val rvScheme : RecyclerView = findViewById(R.id.rv_scheme)
+        schemeAdapter = SchemeAdpter(this, schemeListTemp)
+        var rvScheme : RecyclerView = findViewById(R.id.rv_scheme)
         rvScheme.layoutManager = LinearLayoutManager(this);
         rvScheme.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
         rvScheme.adapter = schemeAdapter
@@ -85,6 +73,19 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         })
+
+        val spinner : Spinner = findViewById(R.id.spinner)
+        spinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long
+            ) {
+                scheme = schemeList[position]
+                val temp = initDefaultValue()
+                schemeAdapter.change(temp)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+        }
     }
 
     private fun initData() {
